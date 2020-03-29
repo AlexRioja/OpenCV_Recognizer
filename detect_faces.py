@@ -21,7 +21,7 @@ with open("recognizer/labels.pickle", "rb") as f:
 	inv_labels=pickle.load(f) 
 	labels={v:k for k,v in inv_labels.items()}#invertimos las claves y los valores de posicion
 
-
+ 
 while wait_4_camera:
 	video_interface = cv2.VideoCapture(0)
 	#Si no tenemos camarita...
