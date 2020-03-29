@@ -1,16 +1,37 @@
 # OpenCV_Recognizer
 
+This is a Face Recognizer using OpenCV for Python
+
+### Considerations
+
 TESTED on UBUNTU 19.04
 
 You may have to change some path parameters on Windows Systems!
 
-USAGE:
+## USAGE :
 
--execute create_datasets.py with an argument that specifies the label of the dataset
-(this will create the dataset in resources/faces_2_recognize)
--execute train_faces.py (this will generate data inside recognizer folder)
-(YOU WILL NEED AT LEAST 2 DATASETS IN faces_2_recognize FOLDER IN ORDER FOR THIS TO WORK!)
--execute detect_faces.py 
+Execute the operations in this order:
+```
+create_datasets.py <dataset_name>
+```
+this will create the dataset in resources/faces_2_recognize. Then execute:
+
+```
+train_faces.py
+```
+this will generate data inside recognizer folder
+(YOU WILL NEED AT LEAST 2 DATASETS IN faces_2_recognize FOLDER IN ORDER FOR THIS TO WORK!).
+And then enjoy executing:
+
+```
+detect_faces.py 
+```
+
+## Authors
+
+* **Alejandro Martinez** *
 
 
-:D
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
