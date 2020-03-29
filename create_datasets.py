@@ -17,7 +17,7 @@ video_interface = cv2.VideoCapture(0)
 n=0
 #vamos a crear datasets de por ejemplo 50 fotos :D
 
-while n<10:
+while n<50:
 	# Leemos el video frame a frame
 	ret, frame = video_interface.read()
 	#Lo pasamos a escala de grises
@@ -39,8 +39,9 @@ while n<10:
 
 			cv2.putText(frame, "Carita detectada :)",(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
 
-			cv2.imwrite("resources/faces_2_recognize/"+label+"/"+str(n)+".jpg", frame[y-120:y+h+120, x-120:x+w+120])
-			cv2.waitKey(800) #Capturamos una cara cada X ms
+			cv2.imwrite("resources/faces_2_recognize/"+label+"/"+str(n)+".jpg", gray[y-50:y+h+50, x-50:x+w+50])
+			#cv2.imwrite("resources/faces_2_recognize/"+label+"/"+str(n)+".jpg", gray)
+			cv2.waitKey(400) #Capturamos una cara cada X ms
 			cv2.imshow('Caritas detectadas', roi_color)
 			n+=1
 

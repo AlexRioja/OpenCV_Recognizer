@@ -54,7 +54,7 @@ while True:
 		roi_gray = gray[y:y+h, x:x+w]
 		roi_color = frame[y:y+h, x:x+w]
 
-		id_, confidence= fisher_recognizer.predict(np.resize(roi_gray, (300,300)))
+		id_, confidence= fisher_recognizer.predict(np.resize(roi_gray, (450,450)))
 
 		font = cv2.FONT_HERSHEY_SIMPLEX
 		cv2.putText(frame, "Fisher->"+labels[id_],(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
