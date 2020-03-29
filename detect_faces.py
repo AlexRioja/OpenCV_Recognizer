@@ -60,7 +60,10 @@ while True:
 		cv2.putText(frame, "Fisher->"+labels[id_],(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
 
 		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (200,200)))
-		cv2.putText(frame, "LBPHF->"+labels[id_],(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
+		if confidence<100:
+			cv2.putText(frame, "LBPHF->"+labels[id_]+"--Confidence: "+str(round(100-confidence)),(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
+		else:
+			cv2.putText(frame, "LBPHF->Unknown",(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
 
 		eyes = eye_classifier.detectMultiScale(roi_gray, minNeighbors=8, minSize=(50,50))
 		for (ex,ey,ew,eh) in eyes:
