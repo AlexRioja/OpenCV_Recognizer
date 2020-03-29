@@ -11,9 +11,11 @@ eye_classifier = cv2.CascadeClassifier('resources/classifiers/haarcascade_eye.xm
 
 fisher_recognizer = cv2.face.FisherFaceRecognizer_create()
 lbphf_recognizer = cv2.face.LBPHFaceRecognizer_create()
+eigen_recognizer= cv2.face.EigenFaceRecognizer_create()
 
 fisher_recognizer.read("recognizer/trainer_fisher.yml")
 lbphf_recognizer.read("recognizer/trainer_lbphf.yml")
+eigen_recognizer.read("recognizer/trainer_eigen.yml")
 
 labels={}
 
@@ -53,18 +55,20 @@ while True:
 		#RegionOfInterest--->la carita buena
 		roi_gray = gray[y:y+h, x:x+w]
 		roi_color = frame[y:y+h, x:x+w]
-
+		#-------------FISHER
 		id_, confidence= fisher_recognizer.predict(np.resize(roi_gray, (450,450)))
 
 		font = cv2.FONT_HERSHEY_SIMPLEX
 		cv2.putText(frame, "Fisher->"+labels[id_],(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
-
-		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (200,200)))
+		#-------------LBPHF
+		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (450,450)))
 		if confidence<100:
 			cv2.putText(frame, "LBPHF->"+labels[id_]+"--Confidence: "+str(round(100-confidence)),(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
 		else:
 			cv2.putText(frame, "LBPHF->Unknown",(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
-
+		#-------------EIGEN
+		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (450,450)))
+		cv2.putText(frame, "Eigen->"+labels[id_],(x,y-65),font, 1, (255,255,255),2,cv2.LINE_AA)
 		eyes = eye_classifier.detectMultiScale(roi_gray, minNeighbors=8, minSize=(50,50))
 		for (ex,ey,ew,eh) in eyes:
 			cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(255,0,0),2)

@@ -8,7 +8,7 @@ import pickle
 face_classifier = cv2.CascadeClassifier('resources/classifiers/haarcascade_frontalface_alt2.xml')
 fisher_recognizer = cv2.face.FisherFaceRecognizer_create()
 lbphf_recognizer = cv2.face.LBPHFaceRecognizer_create()
-
+eigen_recognizer= cv2.face.EigenFaceRecognizer_create()
 #Directorios de trabajo
 base_dir=os.path.dirname(os.path.abspath(__file__))
 img_dir=os.path.join(base_dir, "resources/faces_2_recognize")
@@ -59,9 +59,12 @@ print("Entrenando algoritmo Fisher...")
 fisher_recognizer.train(array_2_train, np.array(label_2_array))
 print("Entrenando algoritmo LBPHF...")
 lbphf_recognizer.train(array_2_train, np.array(label_2_array))
+print("Entrenando algoritmo Eigen...")
+eigen_recognizer.train(array_2_train, np.array(label_2_array))
 
 fisher_recognizer.save("recognizer/trainer_fisher.yml")
 lbphf_recognizer.save("recognizer/trainer_lbphf.yml")
+lbphf_recognizer.save("recognizer/trainer_eigen.yml")
 
 print("Entrenamientos terminados !! ")
 
