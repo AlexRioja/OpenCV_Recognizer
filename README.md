@@ -29,7 +29,7 @@ detect_faces.py
 
 ## Authors
 
-* **Alejandro Martinez** *
+**Alejandro Martinez** 
 
 
 ## License
