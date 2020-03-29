@@ -34,4 +34,4 @@ detect_faces.py
 
 ## License
 
-This project is licensed under the MIT License - see https://opensource.org/licenses/mit-license.php 
+This project is licensed under the MIT License - see [MIT License] (https://opensource.org/licenses/mit-license.php) 
