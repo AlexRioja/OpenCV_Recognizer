@@ -30,10 +30,10 @@ And then enjoy executing:
 ```
 detect_faces.py 
 ```
-## TO-DO
+## TO-DOs
 
 * Implement algorithm to align faces (the prediction works better if the face is correctly aligned)
-* 
+* Create Script that works as a Trigger for others retrieving face identification
 ## Authors
 
 **Alejandro Martinez** 
