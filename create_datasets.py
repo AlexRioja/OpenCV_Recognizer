@@ -1,6 +1,4 @@
-import cv2                  
-import numpy as np         
-import sys
+import cv2
 import os
 import argparse
 
@@ -16,9 +14,9 @@ face_classifier = cv2.CascadeClassifier('resources/classifiers/haarcascade_front
 eye_classifier = cv2.CascadeClassifier('resources/classifiers/haarcascade_eye.xml')
 
 
-try: 
-    os.mkdir("resources/faces_2_recognize/"+args['label']) 
-except OSError as error: 
+try:
+    os.mkdir("resources/faces_2_recognize/"+args['label'])
+except OSError as error:
     pass
 if args['crop']:
 	print("[INFO] El dataset se generará con los recortes de las caras")
@@ -56,7 +54,6 @@ while n<50:
 			
 			cv2.putText(frame, "Carita detectada :)",(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
 
-			
 			#cv2.imwrite("resources/faces_2_recognize/"+label+"/"+str(n)+".jpg", gray[y-50:y+h+50, x-50:x+w+50])
 			if args['crop']:
 				#pre_procesamos la imagen para generar un buen dataset
@@ -75,7 +72,7 @@ while n<50:
 			cv2.imshow('Caritas detectadas', roi_color)
 			n+=1
 
-		cv2.imshow('Video WebCam', frame) 
+		cv2.imshow('Video WebCam', frame)
 		#Rompemos si pretamos 'q'
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
