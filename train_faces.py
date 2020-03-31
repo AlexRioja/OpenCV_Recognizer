@@ -39,16 +39,17 @@ for root, dirs, files in os.walk(img_dir):
             path=os.path.join(root, file)
             label=os.path.basename(root).replace(" ", "_").lower()
             print(path, label)
-            pil_image=Image.open(path).convert("L")#lo pasa a escala de grises
-            resized_img=pil_image.resize((800,800))
-            image_array=np.array(resized_img, "uint8")
+            #pil_image=Image.open(path).convert("L")#lo pasa a escala de grises
+            #resized_img=pil_image.resize((800,800))
+            #image_array=np.array(resized_img, "uint8")
             #print(image_array)
-            faces=face_classifier.detectMultiScale(image_array)
+            #faces=face_classifier.detectMultiScale(image_array)
 
-            for (x, y, w, h) in faces:
-                roi_gray = image_array[y:y+h, x:x+w]
-                array_2_train.append(np.resize(roi_gray, (450,450)))
-                label_2_array.append(create_ids_4_labels(label))
+            #for (x, y, w, h) in faces:
+            #    roi_gray = image_array[y:y+h, x:x+w]
+            array_2_train.append(cv2.imread(path, cv2.COLOR_BGR2GRAY))
+                #array_2_train.append(np.resize(roi_gray, (200,200)))
+            label_2_array.append(create_ids_4_labels(label))
 print(label_2_array)
 print(label_ids)
 #guardamos las asociaciones con pickle

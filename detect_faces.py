@@ -19,6 +19,10 @@ eigen_recognizer.read("recognizer/trainer_eigen.yml")
 
 labels={}
 
+def image_preprocessing(img):
+	#ampliamos el espectro de la imagen para normalizar la intesidad de pixel (mayor contraste, mejor extracción de features)
+	return cv2.equalizeHist(img)
+
 with open("recognizer/labels.pickle", "rb") as f:
 	inv_labels=pickle.load(f) 
 	labels={v:k for k,v in inv_labels.items()}#invertimos las claves y los valores de posicion
@@ -55,19 +59,24 @@ while True:
 		#RegionOfInterest--->la carita buena
 		roi_gray = gray[y:y+h, x:x+w]
 		roi_color = frame[y:y+h, x:x+w]
+		processed_img=image_preprocessing(roi_gray)
+		if processed_img.shape < (50,50):
+			processed_img=cv2.resize(processed_img, (50,50),interpolation=cv2.INTER_AREA)
+		else:
+			processed_img=cv2.resize(processed_img, (50,50),interpolation=cv2.INTER_CUBIC)
 		#-------------FISHER
-		id_, confidence= fisher_recognizer.predict(np.resize(roi_gray, (450,450)))
+		id_, confidence= fisher_recognizer.predict(processed_img)
 
-		font = cv2.FONT_HERSHEY_SIMPLEX
+		font = cv2.FONT_ITALIC
 		cv2.putText(frame, "Fisher->"+labels[id_],(x,y-5),font, 1, (255,255,255),2,cv2.LINE_AA)
 		#-------------LBPHF
-		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (450,450)))
-		if confidence<100:
-			cv2.putText(frame, "LBPHF->"+labels[id_]+"--Confidence: "+str(round(100-confidence)),(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
-		else:
-			cv2.putText(frame, "LBPHF->Unknown",(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
+		id_, confidence= lbphf_recognizer.predict(processed_img)
+		#if confidence<100:
+		cv2.putText(frame, "LBPHF->"+labels[id_]+"--Confidence: "+str(round(155-confidence))+" %",(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
+		#else:
+		#	cv2.putText(frame, "LBPHF->Unknown",(x,y-35),font, 1, (255,255,255),2,cv2.LINE_AA)
 		#-------------EIGEN
-		id_, confidence= lbphf_recognizer.predict(np.resize(roi_gray, (450,450)))
+		id_, confidence= lbphf_recognizer.predict(processed_img)
 		cv2.putText(frame, "Eigen->"+labels[id_],(x,y-65),font, 1, (255,255,255),2,cv2.LINE_AA)
 		eyes = eye_classifier.detectMultiScale(roi_gray, minNeighbors=8, minSize=(50,50))
 		for (ex,ey,ew,eh) in eyes:
