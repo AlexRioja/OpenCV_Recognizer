@@ -4,7 +4,7 @@ This is a Face Recognizer using OpenCV for Python.
 It's thought for cheap systems as it uses Haar like patterns to detect the face and a set of light-weight algorithms (like Fisher, LBHPF or Eiger) to identify the face. 
 For that reason, it's not suitable as a security tool.
 
-For a reliable implementation, use OpenCV dnn module (from this [repo](https://github.com/AlexRioja/FaceRecognition_OpenCV_DNN))
+For a reliable implementation, use OpenCV dnn module (FROM THIS [REPO](https://github.com/AlexRioja/FaceRecognition_OpenCV_DNN))
 
 ### Considerations
 
