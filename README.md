@@ -1,6 +1,10 @@
 # OpenCV_Recognizer
 
-This is a Face Recognizer using OpenCV for Python
+This is a Face Recognizer using OpenCV for Python.
+It's thought for cheap systems as it uses Haar like patterns to detect the face and a set of light-weight algorithms (like Fisher, LBHPF or Eiger) to identify the face. 
+For that reason, it's not suitable as a security tool.
+
+For a reliable implementation, use OpenCV dnn module (repo coming soon with that)
 
 ### Considerations
 
@@ -26,7 +30,10 @@ And then enjoy executing:
 ```
 detect_faces.py 
 ```
+## TO-DOs
 
+* Implement algorithm to align faces (the prediction works better if the face is correctly aligned)
+* Create Script that works as a Trigger for others retrieving face identification
 ## Authors
 
 **Alejandro Martinez** 
