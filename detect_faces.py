@@ -1,7 +1,6 @@
 import cv2
 from time import sleep
 import pickle
-import numpy as np
 
 wait_4_camera=True
 
