@@ -83,6 +83,7 @@ while True:
 			cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(255,0,0),2)
 
 	# Sacamos una ventana con el video 
+	cv2.putText(frame, "Q para salir",(5,frame.shape[0]-5),cv2.FONT_HERSHEY_PLAIN, 1.3, (66,53,243), 2, cv2.LINE_AA)
 	cv2.imshow('Video', frame)
 	#Rompemos si pretamos 'q'
 	if cv2.waitKey(1) & 0xFF == ord('q'):
