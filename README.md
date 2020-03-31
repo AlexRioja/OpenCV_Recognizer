@@ -1,5 +1,7 @@
 # OpenCV_Recognizer
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/719f3f38743b4e8287b67a515b52e596)](https://app.codacy.com/manual/alexrioja98/OpenCV_Recognizer?utm_source=github.com&utm_medium=referral&utm_content=AlexRioja/OpenCV_Recognizer&utm_campaign=Badge_Grade_Dashboard)
+
 This is a Face Recognizer using OpenCV for Python.
 It's thought for cheap systems as it uses Haar like patterns to detect the face and a set of light-weight algorithms (like Fisher, LBHPF or Eiger) to identify the face. 
 For that reason, it's not suitable as a security tool.
