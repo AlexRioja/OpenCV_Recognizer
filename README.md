@@ -16,7 +16,7 @@ You may have to change some path parameters on Windows Systems!
 
 Execute the operations in this order:
 ```
-create_datasets.py <dataset_name>
+create_datasets.py -l <dataset_name> (-c)
 ```
 this will create the dataset in resources/faces_2_recognize. Then execute:
 
